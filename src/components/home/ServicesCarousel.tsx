@@ -11,94 +11,91 @@ const SLIDES = [
   {
     title: "High-Rise Buildings",
     image: "https://images.unsplash.com/photo-1673188218874-8753e33b93fe?auto=format&fit=crop&w=1290&h=590&q=80",
-    points: ["🏗️ Towers & Commercial", "📐 Structural Integrity"],
+    points: ["🏗️ Towers", "📐 Structure"], // Shortened text slightly for small cards
   },
   {
     title: "Civil Engineering",
     image: "https://images.unsplash.com/photo-1742276996998-9ebe9035af76?auto=format&fit=crop&w=1290&h=590&q=80",
-    points: ["🚧 Road & Bridge Works", "💧 Water Projects"],
+    points: ["🚧 Roads", "💧 Water"],
   },
   {
     title: "Quality & Execution",
     image: "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6?auto=format&fit=crop&w=1290&h=590&q=80",
-    points: ["🧱 Material Excellence", "👷 Safety Standards"],
+    points: ["🧱 Materials", "👷 Safety"],
   },
   {
     title: "Sustainable Energy",
     image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?auto=format&fit=crop&w=1290&h=590&q=80",
-    points: ["⚡ Solar Power", "🌱 Green Tech"],
+    points: ["⚡ Solar", "🌱 Green Tech"],
   },
 ];
 
 export default function CapabilitiesSlider() {
   const settings = {
     className: "center",
-    centerMode: true,     // <--- This enables seeing the prev/next slides
+    centerMode: true,
     infinite: true,
-    centerPadding: "220px", // <--- Controls width of side slides (Desktop)
-    slidesToShow: 1,
+    centerPadding: "60px", // Reduced padding so we see more slides
+    slidesToShow: 3,       // <--- Shows 3 slides on Desktop (makes them smaller)
     speed: 500,
-    dots: false,
-    arrows: false, // Usually looks cleaner without arrows in center mode, but can be true
+    dots: true,            // Added dots for better navigation
+    arrows: false,
     autoplay: true,
     responsive: [
       {
         breakpoint: 1024,
         settings: {
-          centerPadding: "100px",
+          slidesToShow: 2, // 2 slides on tablet
+          centerPadding: "40px",
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 640,
         settings: {
-          centerPadding: "20px", // Less padding on mobile
+          slidesToShow: 1, // 1 slide on mobile
+          centerPadding: "40px",
         }
       }
     ]
   };
 
   return (
-    <section className="bg-[var(--bg)] py-20 overflow-hidden">
-      <div className="px-[clamp(1rem,4vw,3.5rem)] mb-10">
+    <section className="bg-[var(--bg)] py-16 overflow-hidden">
+      <div className="px-[clamp(1rem,4vw,3.5rem)] mb-8">
         <p className="text-sm font-semibold text-[var(--dark)]/70">
           Our Capabilities
         </p>
-        <h2 className="mt-2 text-4xl font-semibold text-[var(--dark)]">
+        <h2 className="mt-2 text-3xl font-semibold text-[var(--dark)]">
           Engineering & Construction
         </h2>
       </div>
 
-      {/* Added -mx-4 to allow slider to stretch wider than the text container if needed */}
       <div className="">
         <Slider {...settings}>
           {SLIDES.map((s, i) => (
             <div key={i}>
-              {/* ✨ GAP TRICK: 
-                  React-slick slides touch each other. 
-                  We put padding on this wrapper div to create the white space 
-                  between the images.
-              */}
-              <div className="px-4 transition-all duration-300">
+              {/* Added px-3 for gap between cards */}
+              <div className="px-3 transition-all duration-300">
                 
-                <div className="relative h-[450px] overflow-hidden group">
+                {/* Reduced height to h-[350px] */}
+                <div className="relative h-[350px] rounded-lg overflow-hidden group shadow-lg">
                   <img
                     src={s.image}
                     alt={s.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
 
-                  {/* Overlay - Styled to match Image 2 (Black Bar at bottom) */}
-                  <div className="absolute bottom-8 left-0 right-0 px-8">
-                    <div className="bg-black/90 px-8 py-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                  {/* Compact Overlay */}
+                  <div className="absolute bottom-4 left-0 right-0 px-4">
+                    <div className="bg-black/90 px-5 py-4 rounded-sm flex flex-col gap-2">
                       
-                      <h3 className="text-white text-2xl font-serif font-medium tracking-wide">
+                      <h3 className="text-white text-lg font-serif font-medium tracking-wide">
                         {s.title}
                       </h3>
 
-                      <ul className="flex flex-wrap gap-x-6 gap-y-2">
+                      <ul className="flex flex-wrap gap-x-4 gap-y-1">
                         {s.points.map((p, idx) => (
-                          <li key={idx} className="text-white/90 text-sm font-medium flex items-center gap-2">
-                            {/* Render text directly or span for icon separation */}
+                          <li key={idx} className="text-white/80 text-xs font-medium">
                             {p}
                           </li>
                         ))}
