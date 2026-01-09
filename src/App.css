@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+
+:root{
+  --primary: #EDB446;
+  --primary-hover: #D9A437;
+  --dark: #1C1C1C;
+  --bg: #F9F9F6;
+  --text: #2B2B2B;
+  --muted: #6F6F6F;
+  --border: #E5E5E5;
+
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1200px;
+  --container-wide: 1320px;
+
+  /* responsive side padding */
+  --gutter: clamp(1rem, 3.5vw, 2.5rem);
+}
+
+.container-base{
+  width: 100%;
+  max-width: var(--container-xl);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container-wide{
+  width: 100%;
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container-narrow{
+  width: 100%;
+  max-width: 860px;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
